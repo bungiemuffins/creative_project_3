@@ -3,3 +3,108 @@
     max-width: none;
     padding: 0;
 }
+
+.d-inline-flex {
+    width: 100%;
+    justify-content: space-around;
+
+}
+
+
+.flex-item {
+    background-color: aqua;
+    width: 100%;
+    margin: 1%;
+    height: 500px;
+    
+}
+
+.starwars-body {
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    overflow: hidden;
+  }
+  
+  .fade {
+    position: relative;
+    width: 100%;
+    min-height: 60vh;
+    top: -25px;
+    background-image: linear-gradient(0deg, transparent, black 75%);
+    z-index: 1;
+  }
+  
+  .star-wars {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    height: 800px;
+    color: #feda4a;
+    font-family: 'Pathway Gothic One', sans-serif;
+    font-size: 500%;
+    font-weight: 600;
+    letter-spacing: 6px;
+    line-height: 150%;
+    perspective: 400px;
+    text-align: justify;
+  }
+  
+  .crawl {
+    position: relative;
+    top: 9999px;
+    transform-origin: 50% 100%;
+    animation: crawl 60s linear;
+  }
+  
+  .crawl > .title {
+    font-size: 90%;
+    text-align: center;
+  }
+  
+  .crawl > .title h1 {
+    margin: 0 0 100px;
+    text-transform: uppercase;
+  }
+  
+  @keyframes crawl {
+    0% {
+      top: 0;
+      transform: rotateX(20deg)  translateZ(0);
+    }
+    100% { 
+      top: -6000px;
+      transform: rotateX(25deg) translateZ(-2500px);
+    }
+  }
+
+@font-face {
+    font-family: starwars;
+    src: url(death-star.otf)
+}
+
+  #mainHeader {
+      background: url(images/vader.jpg) top right, linear-gradient(to right, black, #262626);
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      margin-bottom: 0;
+      height: 150px;
+      font-family: starwars;
+      padding: 18px;
+      color: darkred;
+      font-size: 600%;
+  }
+
+  .button {
+      height: 40px
+  }
+
+  div.info {
+    font-family: starwars;
+    text-align: center;
+    color: darkred;
+  }
+
+  div.info h2 h3 {
+    font-size: -webkit-xxx-large;
+  }

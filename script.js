@@ -7,7 +7,9 @@ let app = new Vue ({
         },
         charSearch: '',
         homeWorld: '',
-
+        currentMovie: [],
+        currentHomeworld: {},
+        currentSpecies: {},
     },
     created() {
         this.charAPI();
@@ -17,25 +19,12 @@ let app = new Vue ({
             try {
                 this.loading = true;
                 var rand = Math.floor((Math.random() * 87) + 1);
-                var search = '';
-                if(this.charSearch === '') {
-                    search = rand;
-                }
-                else {
-                    search = '?=' + this.charSearch;
-                }
-                const response = await axios.get('https://swapi.co/api/people/' + search + '/');
+                const response = await axios.get('https://swapi.co/api/people/' + rand + '/');
                 console.log('json :', response);
-                if(search === rand) {
-                    this.currentCharacter = response.data;
-                }
-                else{
-                    this.currentCharacter = response.data.results[0];
-                }
-                console.log(this.currentCharacter);
-                //var tempName = this.currentCharacter.name;
-                //tempName = tempName.replace(' ', '%20');
-                //image = this.getImage(tempName);
+                this.currentCharacter = response.data;
+                this.homeworldReq(this.currentCharacter.homeworld);
+                this.speciesReq(this.currentCharacter.species[0]);
+                this.movieReq();
                 this.loading = false;
                 return true;
             }
@@ -43,8 +32,75 @@ let app = new Vue ({
                 console.log(err);
                 return false;
             }
-
         },
+
+        async searchChar() {
+            try {
+                this.loading = true;
+                const response = await axios.get('https://swapi.co/api/people/?search=' + this.charSearch);
+                console.log('response :', response);
+                this.currentCharacter = response.data.results[0];
+                this.homeworldReq(this.currentCharacter.homeworld);
+                this.speciesReq(this.currentCharacter.species[0]);
+                this.movieReq();
+                this.loading = false;
+                return true;
+            }
+            catch(err) {
+                console.log(err);
+                return false;
+            }
+        },
+
+        async movieReq() {
+            try {
+                this.loading = true;
+                this.currentMovie = [];
+                for(var i = 0; i < this.currentCharacter.films.length; i++) {
+                    const response = await axios.get(this.currentCharacter.films[i]);
+                    this.currentMovie.push({
+                        name: response.data.title,
+                        opening_crawl: response.data.opening_crawl,
+                    });
+                }
+                this.loading = false;
+                return true;
+            }
+            catch(err) {
+                console.log(err);
+                return false;
+            }
+        },
+
+        async homeworldReq(homeworld) {
+            try {
+                this.loading = true;
+                const response = await axios.get(homeworld);
+                console.log('json :', response);
+                this.currentHomeworld = response.data;
+                this.loading = false;
+                return true;
+            }
+            catch(err) {
+                console.log(err);
+                return false;
+            }
+        },
+
+        async speciesReq(species) {
+            try {
+                this.loading = true;
+                const response = await axios.get(species);
+                console.log('json :', response);
+                this.currentSpecies = response.data;
+                this.loading = false;
+                return true;
+            }
+            catch(err) {
+                console.log(err);
+                return false;
+            }
+        }
 
         
     },
