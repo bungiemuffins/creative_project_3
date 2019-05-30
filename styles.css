@@ -102,10 +102,15 @@
     font-family: starwars;
     text-align: center;
     color: darkred;
+    padding: 2%
   }
 
   div.info h2 h3 {
     font-size: -webkit-xxx-large;
+  }
+
+  div.info p {
+    font-size: x-large;
   }
 
   .film-name {
@@ -136,4 +141,11 @@
   .destroy {
       height: 80px;
       margin-left: 200px;
+  }
+
+  footer {
+    margin-top: 0;
+    padding-top: 18%;
+    padding-bottom: 8%;
+    background: linear-gradient(to right, black, #131313);
   }

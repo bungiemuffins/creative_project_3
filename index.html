@@ -9,35 +9,42 @@
 
         <div style="background: linear-gradient(to top right, black, #262626)" id="app">
             <div id="home" class="container tab-pane active">
-                <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: darkred">
+                <nav class="navbar navbar-expand-sm navbar-dark sticky-top" style="background-color: darkred">
                     <form class="form-inline" v-on:submit.prevent="searchChar">
                         <input v-model="charSearch" class="form-control mr-sm-2" type="text" placeholder="Enter a Character">
                         <button style="background: none; border: 0;" type="submit"><img class="button" src="images/falcon.png"></button>
                         
-                        <img class="tie1" src="images/tie.png">
-                        <img class="tie2" src="images/tie.png">
-                        <img class="tie3" src="images/tie.png">
-                        <img class="destroy" src="images/destroy.png">
                     </form>
                 </nav>
-                <div class="info">
-                    <h2>{{currentCharacter.name}}</h2>
-                    <p>Homeworld: {{currentHomeworld.name}}</p>
-                    <p>Species: {{currentSpecies.name}}</p>
-                    <h3>Films</h3>
+                <div v-if="loading">
+                    <p style="color: darkred; font-size: 50px; text-align: center; font-family: starwars;">loading...</p>     
                 </div>
-                <div class="flex-container" v-for="item in currentMovie">
-                    <div class="flex-item">
-                        <p class="film-name">{{item.name}}</p>
-                        <div class="starwars-body">                      
-                            <section class="star-wars">
-                                <div class="crawl">                                   
-                                    <div class="title">
-                                    <h1>{{item.name}}</h1>
-                                    </div>
-                                    <p>{{item.opening_crawl}}</p>
-                                </div>    
-                            </section>
+                <div v-else>
+                    <div class="info">
+                        <h2 style="font-size: -webkit-xxx-large;">{{currentCharacter.name}}</h2>
+                        <p>Homeworld: {{currentHomeworld.name}}</p>
+                        <p>Population: {{currentHomeworld.population}}</p>
+                        <p>Climate: {{currentHomeworld.climate}}</p>
+                        <p>Terrain: {{currentHomeworld.terrain}}</p>
+                        <p>Species: {{currentSpecies.name}}</p>
+                        <p>Classification: {{currentSpecies.classification}}</p>
+                        <p>Language: {{currentSpecies.language}}</p>
+
+                        <h3 style="font-size: -webkit-xxx-large;">Films:</h3>
+                    </div>
+                    <div class="flex-container" v-for="item in currentMovie">
+                        <div class="flex-item">
+                            <h3 class="film-name">{{item.name}}</h3>
+                            <div class="starwars-body">                      
+                                <section class="star-wars">
+                                    <div class="crawl">                                   
+                                        <div class="title">
+                                        <h1>{{item.name}}</h1>
+                                        </div>
+                                        <p>{{item.opening_crawl}}</p>
+                                    </div>    
+                                </section>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -45,6 +52,9 @@
         </div>
    
         <footer>
+            <a href="https://github.com/bungiemuffins/creative_project_3">
+                <h3 style="color: darkred; font-family: starwars; text-align: center;">GitHub</h3>
+            </a>
 
         </footer>
 
