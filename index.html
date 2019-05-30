@@ -4,7 +4,7 @@
         <title>Star Wars Facts</title>
     </head>
     <body>
-        <h1 id="mainHeader">this is the Header</h1>
+        <h1 id="mainHeader">Use Vue, I Will</h1>
 
 
         <div style="background: linear-gradient(to top right, black, #262626)" id="app">
@@ -13,6 +13,11 @@
                     <form class="form-inline" v-on:submit.prevent="searchChar">
                         <input v-model="charSearch" class="form-control mr-sm-2" type="text" placeholder="Enter a Character">
                         <button style="background: none; border: 0;" type="submit"><img class="button" src="images/falcon.png"></button>
+                        
+                        <img class="tie1" src="images/tie.png">
+                        <img class="tie2" src="images/tie.png">
+                        <img class="tie3" src="images/tie.png">
+                        <img class="destroy" src="images/destroy.png">
                     </form>
                 </nav>
                 <div class="info">
@@ -21,24 +26,24 @@
                     <p>Species: {{currentSpecies.name}}</p>
                     <h3>Films</h3>
                 </div>
-                <ul v-for="item in currentMovie">
-                    <p>{{item.name}}</p>
-                    <div class="starwars-body">                      
-                        <section class="star-wars">
-                            <div class="crawl">
-                                
-                                <div class="title">
-                                <h1>{{item.name}}</h1>
-                                </div>
-                                <p>{{item.opening_crawl}}</p>
-                            </div>    
-                        </section>
+                <div class="flex-container" v-for="item in currentMovie">
+                    <div class="flex-item">
+                        <p class="film-name">{{item.name}}</p>
+                        <div class="starwars-body">                      
+                            <section class="star-wars">
+                                <div class="crawl">                                   
+                                    <div class="title">
+                                    <h1>{{item.name}}</h1>
+                                    </div>
+                                    <p>{{item.opening_crawl}}</p>
+                                </div>    
+                            </section>
+                        </div>
                     </div>
-                </ul>
                 </div>
             </div>
         </div>
-
+   
         <footer>
 
         </footer>
